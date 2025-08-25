@@ -1,0 +1,3 @@
+#Run these to manually create the volumes outside of the compose file
+docker volume create --name=redis-data-volume
+docker volume create --name=postgres-data-volume

@@ -1,0 +1,12 @@
+branches: 
+  develop: 
+    mode: ContinuousDeployment
+    tag: alpha
+    source-branches: ['master', 'develop']
+  features: 
+    mode: ContinuousDeployment
+    regex: "^features?[/-]"
+    tag: useBranchName
+    source-branches: ['master', 'develop', 'feature']
+ignore: 
+  sha: []

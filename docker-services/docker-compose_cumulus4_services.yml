@@ -1,0 +1,47 @@
+version: '3.7'
+
+services:
+
+  postgresdb:
+    image: postgres:10.7
+    volumes:
+      - postgres-data-volume:/var/lib/postgresql/data/
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=cu3u1u$$4!3nv@
+    ports:
+      - "5432:5432"
+    restart: always
+
+  zookeeper:
+    image: wurstmeister/zookeeper
+    ports:
+      - "2181:2181"
+    restart: always
+
+  kafka:
+    image: wurstmeister/kafka
+    environment:
+      KAFKA_ADVERTISED_HOST_NAME: localhost
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_LOG_DIRS: /kafka/kafka-logs-1
+    ports:
+      - "9092:9092"
+    depends_on:
+      - zookeeper
+    restart: always
+
+  redis:
+    image: redis:5.0.9
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data-volume:/data
+    restart: always
+
+volumes:
+  postgres-data-volume:
+    external: true
+  redis-data-volume:
+    external: true

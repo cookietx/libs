@@ -1,0 +1,48 @@
+# This is a sample build configuration for Java (Maven).
+# Check our guides at https://confluence.atlassian.com/x/zd-5Mw for more examples.
+# Only use spaces to indent your .yml configuration.
+# -----
+# You can specify a custom docker image from Docker Hub as your build environment.
+image:  maven:3.8.3-openjdk-17
+
+clone:
+  depth: full    # SonarCloud scanner needs the full history to assign issues properly
+
+definitions:
+  caches:
+    sonar: ~/.sonar/cache  # Caching SonarCloud artifacts will speed up your build
+  steps:
+    - step: &build-test-sonarcloud
+        caches:
+          - maven
+          - sonar
+        script: # Modify the commands below to build your repository.
+          - pipe: jfrog/jfrog-setup-cli:1.0.0
+          - set +e
+          - source ./jfrog-setup-cli.sh || echo "Failed to source jfrog-setup-cli.sh, proceeding..."
+          - set -e
+          # Check if JFrog configuration file exists, else create it
+          - echo "Checking if JFrog config file exists..."
+          - |
+            if [ -f ~/.jfrog/jfrog-cli.conf ]; then
+              echo "JFrog CLI config file found. Displaying contents:";
+              cat ~/.jfrog/jfrog-cli.conf;
+            else
+              echo "JFrog CLI config file NOT found. Creating new configuration...";
+              jfrog config add crx --artifactory-url=https://crx.jfrog.io/artifactory/ --user=$JFROG_USER --password=$JFROG_PASSWORD --interactive=false;
+            fi
+          - jfrog rt ping
+          - jfrog rt mvnc --server-id-resolve=crx --repo-resolve-releases=crx-maven-virtual --repo-resolve-snapshots=crx-maven-virtual
+          - jfrog config show crx
+          - jfrog rt mvn clean package install org.sonarsource.scanner.maven:sonar-maven-plugin:sonar
+          - jfrog rt mvn clean package install
+          - jfrog rt mvn clean package install
+pipelines:
+  default:
+    - step: *build-test-sonarcloud
+  branches:
+    master:
+      - step: *build-test-sonarcloud
+  pull-requests:
+    '**':
+      - step: *build-test-sonarcloud

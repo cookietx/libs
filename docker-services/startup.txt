@@ -1,0 +1,4 @@
+docker volume create --name=redis-data-volume
+docker volume create --name=postgres-data-volume
+docker-compose -f docker-compose_cumulus4_services.yml up -d
+
