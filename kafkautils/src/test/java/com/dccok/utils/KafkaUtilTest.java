@@ -1,4 +1,4 @@
-package com.capturerx.common.core;
+package com.dccok.utils;
 
 import ch.qos.logback.classic.Level;
 import ch.qos.logback.classic.Logger;
@@ -32,7 +32,7 @@ class KafkaUtilTest {
     KafkaUtil kafkaUtil;
 
     @BeforeEach
-    public void init(){
+    void init(){
         MockitoAnnotations.openMocks(this);
         KafkaUtil.clearProcessedMsgs4Test(kafkaUtil);
     }

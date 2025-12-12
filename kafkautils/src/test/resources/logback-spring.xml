@@ -4,50 +4,18 @@
     <property name="defaultPattern" value="%d{yyyy-MM-dd'T'HH:mm:ss.SSSZZ, UTC} %process_id %sequence_number %-5level %logger{36} - %msg%n"/>
 
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
-        <encoder class="com.capturerx.common.core.LogbackPatternEncoderExtension">
+        <encoder>
             <pattern>${defaultPattern}</pattern>
         </encoder>
     </appender>
-    <springProfile name="kubernetes">
-        <root level="INFO">
-          <appender-ref ref="STDOUT"/>
-        </root>
-    </springProfile>
-    <springProfile name="default">
-        <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
-            <file>/usr/share/nginx/html/log-warehouse/${app.name}.${processnumber}.log</file>
-            <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
-                <level>${logging.rollingfile.level}</level>
-            </filter>
-            <append>true</append>
-            <encoder class="com.capturerx.common.core.LogbackPatternEncoderExtension">
-                <pattern>${defaultPattern}</pattern>
-            </encoder>
-            <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
-                <fileNamePattern>/usr/share/nginx/html/log-warehouse/${app.name}.%d{yyyy-MM-dd}.%i.bkp</fileNamePattern>
-                <maxFileSize>${logging.rollingfile.maxfilesizemb}MB</maxFileSize>
-                <maxHistory>${logging.rollingfile.maxhistorydays}</maxHistory>
-            </rollingPolicy>
-        </appender>
-        <root level="INFO">
-            <appender-ref ref="STDOUT"/>
-            <appender-ref ref="FILE"/>
-        </root>
-    </springProfile>
 
-    <logger name="springfox" level="WARN" />
-    <logger name="sun" level="WARN" />
-    <logger name="java" level="WARN" />
-    <logger name="kafka" level="WARN" />
-    <logger name="javax" level="WARN" />
-    <logger name="org" level="WARN" />
-    <logger name="net" level="WARN" />
-    <logger name="org.springframework" level="WARN" />
-    <logger name="com.zaxxer.hikari" level="WARN" />
-    <logger name="Hibernate Types" level="ERROR"/>
+    <root level="INFO">
+        <appender-ref ref="STDOUT"/>
+    </root>
+
     <logger name="org.springframework.boot.availability.ApplicationAvailabilityBean" level="DEBUG" />
     <logger name="org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration" level="ERROR" />
-    <logger name="com.capturerx.common.core.LogLevelAdjuster" level="DEBUG" />
+    <logger name="com.dccok.utils.LogLevelAdjuster" level="DEBUG" />
 
 
 </configuration>

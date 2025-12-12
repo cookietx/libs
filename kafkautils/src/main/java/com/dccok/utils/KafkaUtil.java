@@ -1,4 +1,4 @@
-package com.capturerx.common.core;
+package com.dccok.utils;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
@@ -50,7 +50,7 @@ public class KafkaUtil implements ApplicationContextAware {
     private final List<OutboundMessage> pendingOutboundMessages = new ArrayList<>();
 
     private void sendPendingMessages() {
-        if (getPendingOutboundMessages().size() > 0) {
+        if (!getPendingOutboundMessages().isEmpty()) {
             log.info("Posting {} pending outbound Kafka messages", getPendingOutboundMessages().size());
             for(OutboundMessage pendingMsg : getPendingOutboundMessages()) {
                 if (!send(pendingMsg.getBindingName(), pendingMsg.getData()))
@@ -60,16 +60,16 @@ public class KafkaUtil implements ApplicationContextAware {
         }
     }
     private void clearPendingMessage() {
-        if (getPendingOutboundMessages().size() > 0) {
+        if (!getPendingOutboundMessages().isEmpty()) {
             log.warn("Clearing {} unsent outbound Kafka messages", pendingOutboundMessages.size());
             getPendingOutboundMessages().clear();
         }
     }
 
     public void sendAtCommit(String bindingName, Message data) {
-        Message dup = null;
+        Message dup;
         try {
-            Class claz = data.getPayload().getClass();
+            Class<?> claz = data.getPayload().getClass();
             String payload = mapper.writeValueAsString(data.getPayload());
             Object obj = mapper.readValue(payload, claz);
             dup = MessageBuilder.createMessage(obj, data.getHeaders());
@@ -99,9 +99,9 @@ public class KafkaUtil implements ApplicationContextAware {
 
     private static final Map<String,String> processedMsgs = new HashMap<>();
 
-    private static Map<String, Long> processStartTimeMap = new HashMap<>();
-    private static Map<String, String> channelTopicMap = new HashMap<>();
-    private static Set<String> msgTopics = new HashSet<>();
+    private static final Map<String, Long> processStartTimeMap = new HashMap<>();
+    private static final Map<String, String> channelTopicMap = new HashMap<>();
+    private static final Set<String> msgTopics = new HashSet<>();
     private static String appName= "unknown";
 
     public static void clearProcessedMsgs4Test(KafkaUtil mock) {
@@ -138,7 +138,7 @@ public class KafkaUtil implements ApplicationContextAware {
     public static boolean isDupMessage(Message msg) {
         MessageHeaders headers = msg.getHeaders();
         String key = String.format(TWO_STRS,headers.get(KafkaHeaders.RECEIVED_TOPIC),headers.get(KafkaHeaders.GROUP_ID));
-        String val = String.format(TWO_DIGS,(Integer) headers.get(KafkaHeaders.RECEIVED_PARTITION),(Long) headers.get(KafkaHeaders.OFFSET));
+        String val = String.format(TWO_DIGS,(Long) headers.get(KafkaHeaders.RECEIVED_PARTITION),(Long) headers.get(KafkaHeaders.OFFSET));
         String prev = processedMsgs.get(key);
         return prev != null && prev.equals(val);
     }
@@ -154,11 +154,11 @@ public class KafkaUtil implements ApplicationContextAware {
             prefix = "Std commit (man ack):";
         }
         long duration = checkForOvertime(msg, logger);
-        logger.info("{} {}ms {}", prefix, Long.toString(duration), getStandardHeaders(msg));
+        logger.info("{} {}ms {}", prefix, duration, getStandardHeaders(msg));
         // recording as processed
         MessageHeaders headers = msg.getHeaders();
         String key = String.format(TWO_STRS,headers.get(KafkaHeaders.RECEIVED_TOPIC),headers.get(KafkaHeaders.GROUP_ID));
-        String val = String.format(TWO_DIGS,headers.get(KafkaHeaders.RECEIVED_PARTITION),(Long) headers.get(KafkaHeaders.OFFSET));
+        String val = String.format(TWO_DIGS,(Long) headers.get(KafkaHeaders.RECEIVED_PARTITION),(Long) headers.get(KafkaHeaders.OFFSET));
         processedMsgs.put(key,val);
     }
 

@@ -1,4 +1,4 @@
-package com.capturerx.common.core;
+package com.dccok.utils;
 
 import ch.qos.logback.classic.Level;
 import ch.qos.logback.classic.LoggerContext;

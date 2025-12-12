@@ -1,4 +1,4 @@
-package com.capturerx.common.core;
+package com.dccok.utils;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

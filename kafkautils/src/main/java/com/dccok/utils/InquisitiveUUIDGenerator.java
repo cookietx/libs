@@ -1,4 +1,4 @@
-package com.capturerx.common.core;
+package com.dccok.utils;
 
 import lombok.extern.slf4j.Slf4j;
 import org.hibernate.engine.spi.SharedSessionContractImplementor;

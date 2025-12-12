@@ -11,10 +11,10 @@
         <relativePath/>
     </parent>
 
-    <name>captureutils</name>
+    <name>kafkautils</name>
 
-    <groupId>com.capturerx</groupId>
-    <artifactId>captureutils</artifactId>
+    <groupId>com.dccok</groupId>
+    <artifactId>kafkautils</artifactId>
     <version>3.17.1.0-SNAPSHOT</version>
 
     <properties>
@@ -102,18 +102,18 @@
         </dependencies>
     </dependencyManagement>
 
-    <distributionManagement>
-        <repository>
-            <id>CaptureRxRepostiory</id>
-            <name>a0zfppi8zevs7-artifactory-primary-0-releases</name>
-            <url>https://crx.jfrog.io/artifactory/crx-maven-release</url>
-        </repository>
-        <snapshotRepository>
-            <id>CaptureRxRepostiory.Snapshot</id>
-            <name>a0zfppi8zevs7-artifactory-primary-0-snapshots</name>
-            <url>https://crx.jfrog.io/artifactory/crx-maven-snapshot</url>
-        </snapshotRepository>
-    </distributionManagement>
+<!--    <distributionManagement>-->
+<!--        <repository>-->
+<!--            <id>CaptureRxRepostiory</id>-->
+<!--            <name>a0zfppi8zevs7-artifactory-primary-0-releases</name>-->
+<!--            <url>https://crx.jfrog.io/artifactory/crx-maven-release</url>-->
+<!--        </repository>-->
+<!--        <snapshotRepository>-->
+<!--            <id>CaptureRxRepostiory.Snapshot</id>-->
+<!--            <name>a0zfppi8zevs7-artifactory-primary-0-snapshots</name>-->
+<!--            <url>https://crx.jfrog.io/artifactory/crx-maven-snapshot</url>-->
+<!--        </snapshotRepository>-->
+<!--    </distributionManagement>-->
 
     <build>
         <plugins>
