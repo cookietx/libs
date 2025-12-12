@@ -13,7 +13,7 @@
 
     <name>kafkautils</name>
 
-    <groupId>com.dccok</groupId>
+    <groupId>dev.dccok</groupId>
     <artifactId>kafkautils</artifactId>
     <version>3.17.1.0-SNAPSHOT</version>
 

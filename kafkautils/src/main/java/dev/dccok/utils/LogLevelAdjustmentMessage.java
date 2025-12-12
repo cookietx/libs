@@ -1,4 +1,4 @@
-package com.dccok.utils;
+package dev.dccok.utils;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

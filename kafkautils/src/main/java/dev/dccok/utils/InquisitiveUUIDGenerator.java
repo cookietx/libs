@@ -1,4 +1,4 @@
-package com.dccok.utils;
+package dev.dccok.utils;
 
 import lombok.extern.slf4j.Slf4j;
 import org.hibernate.engine.spi.SharedSessionContractImplementor;

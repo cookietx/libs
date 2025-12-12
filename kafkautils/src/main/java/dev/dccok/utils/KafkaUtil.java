@@ -1,4 +1,4 @@
-package com.dccok.utils;
+package dev.dccok.utils;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;

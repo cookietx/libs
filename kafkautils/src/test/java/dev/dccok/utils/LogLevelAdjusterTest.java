@@ -1,4 +1,4 @@
-package com.dccok.utils;
+package dev.dccok.utils;
 
 import ch.qos.logback.classic.Logger;
 import ch.qos.logback.classic.spi.ILoggingEvent;

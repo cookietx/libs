@@ -1,4 +1,4 @@
-package com.dccok.utils;
+package dev.dccok.utils;
 
 import org.hibernate.annotations.IdGeneratorType;
 import org.hibernate.annotations.UuidGenerator;
@@ -10,7 +10,7 @@ import java.lang.annotation.Target;
 import static java.lang.annotation.ElementType.FIELD;
 import static java.lang.annotation.ElementType.METHOD;
 
-@IdGeneratorType( com.dccok.utils.InquisitiveUUIDGenerator.class )
+@IdGeneratorType( InquisitiveUUIDGenerator.class )
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ FIELD, METHOD })
 public @interface InquisitiveIdGenerator {
