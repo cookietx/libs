@@ -1,4 +1,4 @@
-package com.capturerx.oauth2.resttemplate;
+package dev.dcook.oauth2.resttemplate;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;

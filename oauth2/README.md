@@ -7,14 +7,14 @@ Authentication is performed using openid-connect to an appropriate authorization
 The dependency to be in included in the pom.xml file is
 
     <dependency>
-      <groupId>com.capturerx.oauth2</groupId>
+      <groupId>dev.dcook.oauth2</groupId>
       <artifactId>authenticator</artifactId>
       <version>3.17.1.0-SNAPSHOT</version>
     </dependency>
 
 Include in the @ComponentScan: 
 
-`"com.capturerx.oauth2.authenticator"`
+`"dev.dcook.oauth2.authenticator"`
 
 To use this feature the following properties must be defined.
 
@@ -58,7 +58,7 @@ After dependency is established and properties defined the following is an examp
 to secure a URI in a controller
 
 `@GetMapping
-@PreAuthorize("hasRole(T(com.capturerx.cumulus.secureapp.RolesList).C4_CANREADREFERDOC.toString())")
+@PreAuthorize("hasRole(T(dev.dcook.cumulus.secureapp.RolesList).C4_CANREADREFERDOC.toString())")
 public String hello() { return "hello"; }`
 
 # Secure WebClient library 
@@ -70,14 +70,14 @@ user and the authorized client-id/client-password combination must be used to es
 In either case he dependency to be in included in the pom.xml file is:
 
     <dependency>
-      <groupId>com.capturerx.oauth2</groupId>
+      <groupId>dev.dcook.oauth2</groupId>
       <artifactId>securewebclient</artifactId>
       <version>3.17.1.0-SNAPSHOT</version>
     </dependency>
 
 Include in the @ComponentScan:
 
-`"com.capturerx.oauth2.webclient"`
+`"dev.dcook.oauth2.webclient"`
 
 
 Where an instance of a WebClient is needed use the Bean of type CrxWebClientBuilder.  This bean can either

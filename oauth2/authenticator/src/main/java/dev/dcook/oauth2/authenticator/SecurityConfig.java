@@ -1,4 +1,4 @@
-package com.capturerx.oauth2.authenticator;
+package dev.dcook.oauth2.authenticator;
 
 import lombok.RequiredArgsConstructor;
 import org.slf4j.MDC;

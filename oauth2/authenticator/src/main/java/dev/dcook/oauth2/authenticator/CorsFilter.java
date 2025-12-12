@@ -1,4 +1,4 @@
-package com.capturerx.oauth2.authenticator;
+package dev.dcook.oauth2.authenticator;
 
 import jakarta.servlet.*;
 import jakarta.servlet.http.HttpServletRequest;

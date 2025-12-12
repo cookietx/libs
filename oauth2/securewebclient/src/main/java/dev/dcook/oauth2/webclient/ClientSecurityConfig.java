@@ -1,4 +1,4 @@
-package com.capturerx.oauth2.webclient;
+package dev.dcook.oauth2.webclient;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.web.reactive.EnableWebFluxSecurity;

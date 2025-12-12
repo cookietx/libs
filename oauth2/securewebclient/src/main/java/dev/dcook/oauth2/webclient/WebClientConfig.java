@@ -1,4 +1,4 @@
-package com.capturerx.oauth2.webclient;
+package dev.dcook.oauth2.webclient;
 
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;

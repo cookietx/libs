@@ -10,7 +10,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
-    <groupId>com.capturerx.oauth2</groupId>
+    <groupId>dev.dcook.oauth2</groupId>
     <artifactId>c4oauth2</artifactId>
     <version>3.17.1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
@@ -46,12 +46,6 @@
         </dependency>
 
         <dependency>
-            <groupId>com.capturerx</groupId>
-            <artifactId>logbackpatternencoder</artifactId>
-            <version>3.17.1.0-SNAPSHOT</version>
-        </dependency>
-
-        <dependency>
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
             <version>1.4.14</version>
@@ -63,20 +57,6 @@
         </dependency>
 
     </dependencies>
-
-    <distributionManagement>
-        <repository>
-            <id>CaptureRxRepostiory</id>
-            <name>a0zfppi8zevs7-artifactory-primary-0-releases</name>
-            <url>https://crx.jfrog.io/artifactory/crx-maven-release</url>
-        </repository>
-        <snapshotRepository>
-            <id>CaptureRxRepostiory.Snapshot</id>
-            <name>a0zfppi8zevs7-artifactory-primary-0-snapshots</name>
-            <url>https://crx.jfrog.io/artifactory/crx-maven-snapshot</url>
-        </snapshotRepository>
-    </distributionManagement>
-
 
 </project>
 
